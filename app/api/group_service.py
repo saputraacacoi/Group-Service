@@ -3,9 +3,17 @@ from flask_restplus import Resource
 
 
 @ns.route('/group')
-class UserAPI(Resource):
+class GroupAPI(Resource):
+    
+    def post(self):
+        """Creates a new Group."""
+        create_group(request.json)
+        return None, 201
+    
     def get(self):
-        return {
-            'group': 'group service api'
-        }
+        """Returns list of Group."""
+        return get_all_groups()
+        
+
+
 
