@@ -16,7 +16,7 @@ class GroupListAPI(Resource):
     def get(self):
         """Returns list of Group."""
         queryset = Group.query.all()
-        queryset = Group_schema.dump(queryset).data
+        queryset = group_schema.dump(queryset).data
         return jsonify({
 
             'data': queryset,
@@ -63,7 +63,7 @@ class GroupAPI(Resource):
     @api.doc(body=group_fields)
     def put(self, id):
         data = request.get_json(force=True)
-        group = User.query.get(id)
+        group = Group.query.get(id)
         group.name = data['name']
         group.keterangan = data['keterangan']
         db.session.add(group)
